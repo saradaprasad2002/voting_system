@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results — VoteCast</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <style>
+    /* ── Full-page background: vote_4.jpg ── */
+    body {
+      background: url('vote_4.jpg') center top / cover no-repeat fixed;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 9, 22, 0.68);
+      z-index: 0;
+    }
+
+    .page-wrapper { position: relative; z-index: 1; }
+
+    /* Glass header */
+    .site-header {
+      background: rgba(8, 13, 30, 0.45);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 40px;
+    }
+
+    /* Transparent stat cards */
+    .stat-card {
+      background: rgba(13, 20, 42, 0.50) !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-color: rgba(255,255,255,0.10) !important;
+    }
+    .stat-card:hover {
+      background: rgba(20, 32, 62, 0.60) !important;
+    }
+
+    /* Transparent result panels */
+    .result-panel {
+      background: rgba(13, 20, 42, 0.50) !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-color: rgba(255,255,255,0.10) !important;
+    }
+
+    /* Transparent winner banner */
+    .winner-banner {
+      background: rgba(20, 16, 6, 0.45) !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-color: rgba(240,192,64,0.28) !important;
+    }
+
+    /* Glass footer */
+    .site-footer {
+      background: rgba(6,10,22,0.40);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px 16px 0 0;
+      margin-top: 48px;
+      color: rgba(255,255,255,0.35) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ── Header ── -->
+    <header class="site-header">
+      <div style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:18px;flex-wrap:wrap;gap:12px;">
+        <div class="logo">
+          <div class="logo-icon">🗳️</div>
+          <span class="logo-text">Vote<span>Cast</span></span>
+        </div>
+        <div class="header-actions">
+          <span class="chip chip-blue">👤 <span id="user-label">—</span></span>
+          <button class="btn btn-danger btn-sm" id="logout-btn">Sign Out</button>
+        </div>
+      </div>
+    </header>
+
+    <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+
+      <!-- ── Hero ── -->
+      <section class="hero" style="margin-bottom:36px">
+        <div class="hero-eyebrow">Live Tally · Read-Only View</div>
+        <h1>Election <em>Results</em></h1>
+        <p>Current standings based on all votes recorded. Results are automatically updated.</p>
+      </section>
+
+      <!-- ── Stats ── -->
+      <div class="stats-bar">
+        <div class="stat-card">
+          <div class="stat-label">Total Votes Cast</div>
+          <div class="stat-value gold" id="stat-total">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Candidates</div>
+          <div class="stat-value blue" id="stat-candidates">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Current Leader</div>
+          <div class="stat-value green" id="stat-winner">—</div>
+        </div>
+      </div>
+
+      <!-- ── Winner banner ── -->
+      <div class="winner-banner" id="winner-banner"></div>
+
+      <!-- ── Results panels ── -->
+      <div class="results-section">
+        <div class="result-panel">
+          <div class="panel-title"><span>📋</span> Vote Breakdown</div>
+          <div id="result-rows"></div>
+        </div>
+        <div class="result-panel">
+          <div class="panel-title"><span>📊</span> Visual Chart</div>
+          <div class="chart-container">
+            <canvas id="results-chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-actions">
+        <button class="btn btn-primary" id="back-btn">← Back to Voting</button>
+      </div>
+
+      <p style="font-size:.78rem;color:rgba(255,255,255,0.35);text-align:center;margin-top:16px">
+        🔒 Results are read-only. Only administrators can reset votes.
+      </p>
+
+      <footer class="site-footer" style="text-align:center;padding:24px 0;font-size:.8rem;">
+        VoteCast · Results reflect real-time local data
+      </footer>
+
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="script.js"></script>
+</body>
+</html>

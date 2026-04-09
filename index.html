@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vote — VoteCast</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗳️</text></svg>" />
+  <style>
+    /* ── Full-page background: vote_4.jpg ── */
+    body {
+      background: url('vote_4.jpg') center top / cover no-repeat fixed;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 9, 22, 0.65);
+      z-index: 0;
+    }
+
+    /* Page content above overlay */
+    .page-wrapper { position: relative; z-index: 1; }
+
+    /* Transparent glass header */
+    .site-header {
+      background: rgba(8, 13, 30, 0.45);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 40px;
+    }
+
+    /* Transparent candidate cards */
+    .candidate-card {
+      background: rgba(13, 20, 42, 0.50) !important;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-color: rgba(255,255,255,0.11) !important;
+    }
+    .candidate-card:hover {
+      background: rgba(20, 32, 62, 0.62) !important;
+      border-color: rgba(99,179,237,0.35) !important;
+    }
+    .candidate-card.voted-card {
+      background: rgba(20, 18, 8, 0.50) !important;
+      border-color: rgba(240,192,64,0.40) !important;
+    }
+
+    /* Transparent section title area */
+    .section-title h2 { text-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+
+    /* Glass footer */
+    .site-footer {
+      background: rgba(6,10,22,0.40);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px 16px 0 0;
+      margin-top: 48px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ── Header ── -->
+    <header class="site-header">
+      <div style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:18px;flex-wrap:wrap;gap:12px;">
+        <div class="logo">
+          <div class="logo-icon">🗳️</div>
+          <span class="logo-text">Vote<span>Cast</span></span>
+        </div>
+        <div class="header-actions">
+          <span class="chip chip-blue">👤 <span id="user-label">—</span></span>
+          <button class="btn btn-ghost btn-sm" id="results-btn">📊 Results</button>
+          <button class="btn btn-danger btn-sm" id="logout-btn">Sign Out</button>
+        </div>
+      </div>
+    </header>
+
+    <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+
+      <!-- ── Hero ── -->
+      <section class="hero">
+        <div class="hero-eyebrow">Live Election · Cast Your Ballot</div>
+        <h1>Choose Your <em>Candidate</em></h1>
+        <p>You have one vote. Make it count. Select the candidate you believe will lead best.</p>
+      </section>
+
+      <!-- ── Candidates ── -->
+      <section>
+        <div class="section-title">
+          <h2>Candidates</h2>
+          <span class="chip chip-gold">🔒 One vote per voter</span>
+        </div>
+        <div class="candidates-grid" id="candidates-grid">
+          <!-- Rendered by script.js -->
+        </div>
+      </section>
+
+      <footer class="site-footer" style="text-align:center;padding:24px 0;color:rgba(255,255,255,0.35);font-size:.8rem;">
+        VoteCast · Secure · Transparent ·
+      </footer>
+
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="script.js"></script>
+</body>
+</html>

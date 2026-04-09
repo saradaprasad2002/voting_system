@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — VoteCast</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+  <style>
+    /* ── Full-page background: vote_2.jpg ── */
+    body {
+      min-height: 100vh;
+      background: url('vote_2.jpg') center center / cover no-repeat fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 5, 20, 0.52);
+      z-index: 0;
+    }
+
+    .glass-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      background: rgba(10, 6, 26, 0.55);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(183, 148, 244, 0.18);
+      border-radius: 24px;
+      padding: 48px 40px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.50), 0 0 40px rgba(183,148,244,0.06);
+      animation: fadeUp 0.5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-logo p { color: rgba(255,255,255,0.6); }
+
+    .form-group input {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.35); }
+    .form-group input:focus {
+      background: rgba(183,148,244,0.10);
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(183,148,244,0.12);
+    }
+    .form-group label { color: rgba(255,255,255,0.7); }
+    .input-icon { color: rgba(255,255,255,0.4); }
+    .divider { color: rgba(255,255,255,0.3); }
+    .divider::before, .divider::after { background: rgba(255,255,255,0.12); }
+    .form-hint { color: rgba(255,255,255,0.4); }
+
+    /* Credentials hint box */
+    .creds-hint {
+      background: rgba(183,148,244,0.07);
+      border: 1px solid rgba(183,148,244,0.20);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      font-size: .8rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 480px) {
+      .glass-card { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glass-card">
+
+    <div class="login-logo">
+      <div class="logo-icon" style="background:linear-gradient(135deg,#553c9a,#b794f4)">🛡️</div>
+      <div class="admin-badge">🔐 Admin Access</div>
+      <h2>Admin <span style="color:var(--purple)">Portal</span></h2>
+      <p>Restricted area — authorised personnel only</p>
+    </div>
+
+    <div class="creds-hint">
+      <strong style="color:var(--purple)">Default credentials:</strong><br>
+      Username: <code style="color:#edf2f7">admin</code>
+      &nbsp;·&nbsp;
+      Password: <code style="color:#edf2f7">Admin@2024!</code>
+    </div>
+
+    <form id="admin-login-form" novalidate>
+
+      <div class="form-group">
+        <label for="admin-username">Admin Username</label>
+        <div class="input-wrap">
+          <span class="input-icon">🛡️</span>
+          <input type="text" id="admin-username" placeholder="admin"
+                 autocomplete="username" autocapitalize="none" spellcheck="false" />
+        </div>
+        <p class="field-error" id="admin-user-error"></p>
+      </div>
+
+      <div class="form-group">
+        <label for="admin-password">Password</label>
+        <div class="input-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="admin-password" placeholder="Admin password"
+                 autocomplete="current-password" />
+          <button type="button" class="input-toggle" id="toggle-password" aria-label="Toggle">👁</button>
+        </div>
+        <p class="field-error" id="admin-pass-error"></p>
+      </div>
+
+      <button type="submit" class="btn btn-admin btn-lg btn-full" id="admin-login-btn">
+        Admin Sign In →
+      </button>
+    </form>
+
+    <div class="divider"></div>
+    <p class="form-hint">
+      Voter?
+      <button class="link-btn" onclick="window.location.href='login.html'">Go to voter login</button>
+    </p>
+
+  </div>
+
+  <div id="toast-container"></div>
+  <script src="script.js"></script>
+</body>
+</html>
