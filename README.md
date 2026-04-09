@@ -1,6 +1,6 @@
-PHP Voting System
+Voting System
 
-A secure and user-friendly Online Voting System built using PHP, MySQL, HTML, CSS, and JavaScript, featuring both User Voting Panel and Admin Dashboard.
+A secure and user-friendly Online Voting System built using HTML, CSS, and JavaScript, featuring both User Voting Panel and Admin Dashboard.
 
  Features
  User Panel:-
@@ -23,6 +23,4 @@ Dashboard overview
 Tech Stack :--
 
 Frontend: HTML, CSS, JavaScript
-Backend: PHP
-Database: MySQL
-Server: XAMPP / LAMP / WAMP# voting_system
+using local storage 
